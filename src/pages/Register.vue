@@ -1,6 +1,7 @@
 <template>
   <main>
-    <h1 class="mb-4">Register</h1>
+    <h1>Register</h1>
+    <small class="mb-4">Fill the required fields to create an account</small>
     <form @submit.prevent="register">
       <div class="mb-3 form-group">
         <label for="email-address" class="form-label">Email address</label>

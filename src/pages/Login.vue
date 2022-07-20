@@ -1,6 +1,7 @@
 <template>
   <main>
-    <h1 class="mb-4">Login</h1>
+    <h1>Login</h1>
+    <small class="mb-4">Please enter your login email and password</small>
     <form @submit.prevent="login">
       <div class="mb-3 form-group">
         <label for="email-address" class="form-label">Email address</label>
