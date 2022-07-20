@@ -2,11 +2,12 @@ import "@/plugins";
 
 import Vue from "vue";
 
-import { AppAlert } from "@/components/utils";
+import { AppAlert, AppLoader } from "@/components/utils";
 
 // axiosConfig
 
 // Global components
 Vue.component("AppAlert", AppAlert);
+Vue.component("AppLoader", AppLoader);
 
 // custom utils

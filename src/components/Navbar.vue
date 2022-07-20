@@ -25,7 +25,10 @@
             </b-nav-item>
           </b-navbar-nav>
           <b-navbar-nav class="ms-auto">
-            <b-nav-item>Hello! User</b-nav-item>
+            <b-nav-item
+              >Hello!
+              <span class="text-custom-blue">{{ email }}</span></b-nav-item
+            >
             <b-nav-item @click="logout">Logout</b-nav-item>
           </b-navbar-nav>
         </b-collapse>
@@ -67,6 +70,9 @@ export default {
   computed: {
     isAuthenticated() {
       return this.$store.getters.isAuthenticated;
+    },
+    email() {
+      return this.$store.state.auth.email;
     },
   },
 };
