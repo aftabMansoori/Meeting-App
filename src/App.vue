@@ -28,4 +28,34 @@ export default {
 .text-custom-blue {
   color: #4493c2;
 }
+
+.hrStyle {
+  border: 1px solid #b2aeae;
+}
+
+a {
+  text-decoration: none;
+}
+
+p {
+  margin: 0;
+}
+
+.bg {
+  background-color: #85c4e8;
+}
+
+.btnBg {
+  background-color: #4493c2;
+  color: #fff;
+}
+
+.btnBg:hover {
+  background-color: #3c86b1;
+  color: rgb(244, 235, 235);
+}
+
+hr {
+  margin: 0.5em 0;
+}
 </style>

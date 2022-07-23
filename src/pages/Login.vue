@@ -119,7 +119,6 @@ export default {
           Vue.$toast.success(`Hii! ${response.name}, login successfull!!`, {
             duration: config.toastDuration,
           });
-          this.loading = false;
           this.$router.push("/");
         } else {
           Vue.$toast.error(response.message || "There was an error", {

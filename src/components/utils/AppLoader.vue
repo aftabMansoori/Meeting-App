@@ -1,5 +1,7 @@
 <template>
-  <span class="loader"></span>
+  <div class="loaderContainer">
+    <span class="loader"></span>
+  </div>
 </template>
 
 <script>
@@ -9,6 +11,12 @@ export default {
 </script>
 
 <style scoped>
+.loaderContainer {
+  min-height: 50vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .loader {
   animation: rotate 1s infinite;
   height: 50px;
@@ -26,12 +34,12 @@ export default {
 .loader:before {
   animation: ball1 1s infinite;
   background-color: #fff;
-  box-shadow: 30px 0 0 #ff3d00;
+  box-shadow: 30px 0 0 #4493c2;
   margin-bottom: 10px;
 }
 .loader:after {
   animation: ball2 1s infinite;
-  background-color: #ff3d00;
+  background-color: #4493c2;
   box-shadow: 30px 0 0 #fff;
 }
 
@@ -49,15 +57,15 @@ export default {
 
 @keyframes ball1 {
   0% {
-    box-shadow: 30px 0 0 #ff3d00;
+    box-shadow: 30px 0 0 #4493c2;
   }
   50% {
-    box-shadow: 0 0 0 #ff3d00;
+    box-shadow: 0 0 0 #4493c2;
     margin-bottom: 0;
     transform: translate(15px, 15px);
   }
   100% {
-    box-shadow: 30px 0 0 #ff3d00;
+    box-shadow: 30px 0 0 #4493c2;
     margin-bottom: 10px;
   }
 }

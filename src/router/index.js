@@ -35,13 +35,6 @@ const router = new Router({
       name: "Meetings",
       path: "/meetings",
       component: Meeting,
-      //   children: [
-      //     {
-      //       name: "Meetings",
-      //       path: "/meetings/search-meetings",
-
-      //     },
-      //   ],
       meta,
     },
     {

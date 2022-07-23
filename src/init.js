@@ -3,11 +3,10 @@ import "@/plugins";
 import Vue from "vue";
 
 import { AppAlert, AppLoader } from "@/components/utils";
-
-// axiosConfig
+import dateFilter from "@/filter/date";
 
 // Global components
 Vue.component("AppAlert", AppAlert);
 Vue.component("AppLoader", AppLoader);
 
-// custom utils
+Vue.filter("date", dateFilter);

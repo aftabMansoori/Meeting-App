@@ -18,9 +18,11 @@
               :key="index"
               :to="item.link"
               class="text-decoration-none text-reset py-1 px-1"
-              :class="item.id === activeIdx ? 'active text-dark fw-bold' : ''"
-              @click="setActive(index)"
+              :class="
+                item.link === $route.path ? 'active text-dark fw-bold' : ''
+              "
             >
+              <!-- @click="setActive(index)" -->
               {{ item.label }}
             </b-nav-item>
           </b-navbar-nav>
@@ -50,13 +52,9 @@ export default {
         { label: "Meetings", link: "/meetings", id: 1 },
         { label: "Teams", link: "/teams", id: 2 },
       ],
-      activeIdx: 0,
     };
   },
   methods: {
-    setActive(id) {
-      this.activeIdx = id;
-    },
     async logout() {
       const res = await this.$store.dispatch("logout");
       if (res === "success") {
