@@ -17,4 +17,8 @@ const searchMeetings = async (period, search) => {
   }
 };
 
-export { searchMeetings };
+const addMeeting = async (meeting) => {
+  console.log(meeting);
+};
+
+export { searchMeetings, addMeeting };

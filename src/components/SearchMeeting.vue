@@ -37,6 +37,7 @@
         v-for="(meeting, i) in meetingResults"
         :key="i"
         :meeting="meeting"
+        :searchMeetings="searchMeetings"
       />
     </section>
     <template v-if="STATUS === 'ERROR'">
@@ -75,6 +76,9 @@ export default {
         this.STATUS = "ERROR";
       }
     },
+  },
+  created() {
+    this.searchMeetings();
   },
 };
 </script>

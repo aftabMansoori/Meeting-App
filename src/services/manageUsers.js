@@ -1,4 +1,5 @@
 import axiosConfig from "./axiosConfig";
+import { successHandler, errorHandler } from "./helper";
 
 const attendeesStr = (attendees) => {
   let attendeesStr = "";
@@ -17,30 +18,34 @@ const registeredUsers = async () => {
 };
 
 const excuseYourSelf = async (type, action, id) => {
-  const response = await axiosConfig.patch(
-    `/${type}/${id}?` +
-      new URLSearchParams({
-        action: action,
-      })
-  );
+  try {
+    const response = await axiosConfig.patch(
+      `/${type}/${id}?` +
+        new URLSearchParams({
+          action: action,
+        })
+    );
 
-  if (response.status !== 200) throw Error;
-
-  return response;
+    return successHandler(response);
+  } catch (err) {
+    errorHandler(err);
+  }
 };
 
 const addMember = async (type, action, id, userId) => {
-  const response = await axiosConfig.patch(
-    `/${type}/${id}?` +
-      new URLSearchParams({
-        action: action,
-        userId: userId,
-      })
-  );
+  try {
+    const response = await axiosConfig.patch(
+      `/${type}/${id}?` +
+        new URLSearchParams({
+          action: action,
+          userId: userId,
+        })
+    );
 
-  if (response.status !== 200) throw Error;
-
-  return response;
+    return successHandler(response);
+  } catch (err) {
+    errorHandler(err);
+  }
 };
 
 export { attendeesStr, registeredUsers, excuseYourSelf, addMember };

@@ -82,57 +82,33 @@ export default {
     attendees(members) {
       return attendeesStr(members);
     },
+
     async excuseYourSelf(id) {
-      try {
-        this.loading = true;
-        const response = await excuseYourSelf("teams", "remove_member", id);
+      this.loading = true;
+      const data = await excuseYourSelf("teams", "remove_member", id);
 
-        if (response.status === 200) {
-          Vue.$toast.success(
-            `You have successfully left ${response.data.name}`,
-            {
-              duration: config.toastDuration,
-            }
-          );
-          this.getAllTeams();
-        }
+      if (!data) this.loading = false;
 
-        this.loading = false;
-      } catch (err) {
-        Vue.$toast.error(err.message || "There was some error", {
-          duration: config.toastDuration,
-        });
-        this.loading = false;
-      }
+      Vue.$toast.success(`You have successfully left ${data.name}`, {
+        duration: config.toastDuration,
+      });
+
+      this.loading = false;
+      this.getAllTeams();
     },
 
     async addMember(id) {
-      try {
-        this.loading = true;
-        const response = await addMember(
-          "teams",
-          "add_member",
-          id,
-          this.member
-        );
+      this.loading = true;
+      const data = await addMember("teams", "add_member", id, this.member);
 
-        if (response.status === 200) {
-          Vue.$toast.success(
-            `Member successfully added to ${response.data.name}`,
-            {
-              duration: config.toastDuration,
-            }
-          );
-          this.getAllTeams();
-        }
+      if (!data) this.loading = false;
 
-        this.loading = false;
-      } catch (err) {
-        Vue.$toast.error(err.message || "There was some error", {
-          duration: config.toastDuration,
-        });
-        this.loading = false;
-      }
+      Vue.$toast.success("Member added successfully", {
+        duration: config.toastDuration,
+      });
+
+      this.loading = false;
+      this.getAllTeams();
     },
   },
 };
