@@ -1,6 +1,6 @@
 <template>
   <article class="card my-3 px-4 py-3">
-    <div class="card-boody">
+    <div class="card-body">
       <div class="w-100 d-flex align-items-center">
         <h3 class="me-3 card-title">{{ meeting.date | date }}</h3>
         <div>{{ time(meeting.startTime, meeting.endTime) }}</div>

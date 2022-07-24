@@ -18,7 +18,12 @@ const searchMeetings = async (period, search) => {
 };
 
 const addMeeting = async (meeting) => {
-  console.log(meeting);
+  try {
+    const response = await axiosConfig.post("/meetings", meeting);
+    return successHandler(response);
+  } catch (err) {
+    errorHandler(err);
+  }
 };
 
 export { searchMeetings, addMeeting };
