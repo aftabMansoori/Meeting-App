@@ -1,11 +1,13 @@
 <template>
   <section>
-    <h1 class="fw-bold">Calender</h1>
+    <h1 class="fw-bold">
+      <span><i class="fa-solid fa-calendar"></i></span> Calender
+    </h1>
     <hr class="hrStyle" />
     <div class="d-flex justify-content-between">
       <div>
-        <h3>21 July 2022</h3>
-        <h5 class="text-secondary">Saturday</h5>
+        <h3>{{ choosedDate }}</h3>
+        <h5 class="text-secondary">{{ choosedDay }}</h5>
       </div>
       <div class="form-group">
         <input
@@ -43,15 +45,34 @@ export default {
       date: "",
       loading: false,
       meetings: Array(24).fill(null),
+      choosedDate: "",
+      choosedDay: "",
     };
   },
   methods: {
+    selectedDate() {
+      const options = {
+        weekday: "long",
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      };
+      const date = new Date(this.date);
+      const dateSelected = date
+        .toLocaleDateString(undefined, options)
+        .split(",");
+
+      this.choosedDate = dateSelected[1] + dateSelected[2];
+      this.choosedDay = dateSelected[0];
+    },
     async calenderMeetings() {
       try {
         this.loading = true;
         this.meetings = Array(24).fill(null);
 
         const data = await getCalenderMeetings(this.date);
+
+        this.selectedDate();
 
         data.forEach((meet) => {
           this.meetings[meet.startTime.hours] = meet;

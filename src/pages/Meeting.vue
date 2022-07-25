@@ -1,6 +1,8 @@
 <template>
   <section>
-    <h1 class="fw-bold">Meetings</h1>
+    <h1 class="fw-bold">
+      <span><i class="fa-solid fa-building"></i></span> Meetings
+    </h1>
     <hr class="hrStyle" />
     <div>
       <!-- <b-nav tabs>

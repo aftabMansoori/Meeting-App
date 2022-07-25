@@ -22,7 +22,16 @@
           ></textarea>
         </div>
         <div class="my-2">
-          <button class="btn btnBg text-white" type="submit">Search</button>
+          <button
+            class="btn btnBg text-white"
+            type="submit"
+            :disabled="STATUS === 'LOADING'"
+          >
+            Search
+            <template v-if="STATUS === 'LOADING'">
+              <app-spinner></app-spinner>
+            </template>
+          </button>
         </div>
       </form>
     </section>
@@ -40,11 +49,16 @@
         :searchMeetings="searchMeetings"
       />
     </section>
-    <template v-if="STATUS === 'ERROR'">
+    <section v-if="STATUS === 'ERROR'">
       <h3 class="">Meeting matching search criteria</h3>
       <hr class="hrStyle" />
-      <h1>No Events</h1>
-    </template>
+      <div
+        class="d-flex flex-column align-items-center justify-content-center my-5"
+      >
+        <img src="@/assets/no-data.svg" class="img-fluid w-25" alt="" />
+        <h1 class="mt-5">No Events</h1>
+      </div>
+    </section>
   </section>
 </template>
 

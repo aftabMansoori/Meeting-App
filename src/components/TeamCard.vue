@@ -1,9 +1,6 @@
 <template>
   <article>
-    <template v-if="loading">
-      <app-spinner></app-spinner>
-    </template>
-    <div class="h-100" v-else>
+    <div class="h-100">
       <div class="team-detail d-flex flex-column justify-content-between">
         <div>
           <h3>{{ team.name }}</h3>
@@ -63,10 +60,8 @@ import {
   excuseYourSelf,
   addMember,
 } from "@/services/manageUsers";
-import AppSpinner from "./utils/AppSpinner.vue";
 
 export default {
-  components: { AppSpinner },
   name: "TeamCard",
   props: {
     team: Object,

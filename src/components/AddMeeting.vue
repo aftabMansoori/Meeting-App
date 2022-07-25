@@ -78,6 +78,9 @@
       <div class="my-2">
         <button class="btn btnBg text-white" type="submit" :disabled="loading">
           Add meeting
+          <template v-if="loading">
+            <app-spinner></app-spinner>
+          </template>
         </button>
       </div>
     </form>

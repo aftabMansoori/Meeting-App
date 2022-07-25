@@ -62,6 +62,7 @@
           :disabled="loading"
         >
           Add Team
+          <template v-if="loading"> <app-spinner></app-spinner> </template>
         </button>
       </form>
     </div>
@@ -72,8 +73,10 @@
 import Vue from "vue";
 import config from "@/config";
 import { addTeam } from "@/services/teams";
+import AppSpinner from "./utils/AppSpinner.vue";
 
 export default {
+  components: { AppSpinner },
   name: "AddTeamCard",
   props: {
     getAllTeams: Function,

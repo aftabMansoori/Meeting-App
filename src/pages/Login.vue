@@ -8,6 +8,10 @@
         <input
           type="email"
           class="form-control"
+          :class="{
+            'is-valid': shouldAppendValidClass($v.form.email),
+            'is-invalid': shouldAppendErrorClass($v.form.email),
+          }"
           id="email-address"
           aria-describedby="emailHelp"
           v-model="form.email"
@@ -30,6 +34,10 @@
           id="password"
           v-model="form.password"
           @blur="$v.form.password.$touch()"
+          :class="{
+            'is-valid': shouldAppendValidClass($v.form.password),
+            'is-invalid': shouldAppendErrorClass($v.form.password),
+          }"
         />
         <div v-if="$v.form.password.$error" class="text-danger mt-1">
           <div v-if="!$v.form.password.required" class="error-message">
@@ -55,6 +63,9 @@
 
       <button type="submit" class="btn btn-primary w-100" :disabled="loading">
         Login
+        <template v-if="loading">
+          <app-spinner></app-spinner>
+        </template>
       </button>
     </form>
     <section class="mt-5">
@@ -132,6 +143,12 @@ export default {
         });
         this.loading = false;
       }
+    },
+    shouldAppendValidClass(field) {
+      return !field.$invalid && field.$model && field.$dirty;
+    },
+    shouldAppendErrorClass(field) {
+      return field.$error;
     },
   },
 };

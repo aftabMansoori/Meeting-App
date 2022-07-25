@@ -28,7 +28,7 @@
           </b-navbar-nav>
           <b-navbar-nav class="ms-auto">
             <b-nav-item
-              >Hello!
+              ><span class="me-2"><i class="fa-solid fa-user"></i></span> Hello!
               <span class="text-custom-blue">{{ email }}</span></b-nav-item
             >
             <b-nav-item @click="logout">Logout</b-nav-item>

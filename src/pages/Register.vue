@@ -8,6 +8,10 @@
         <input
           type="email"
           class="form-control"
+          :class="{
+            'is-valid': shouldAppendValidClass($v.user.email),
+            'is-invalid': shouldAppendErrorClass($v.user.email),
+          }"
           id="email-address"
           aria-describedby="emailHelp"
           v-model="user.email"
@@ -27,6 +31,10 @@
         <input
           type="text"
           class="form-control"
+          :class="{
+            'is-valid': shouldAppendValidClass($v.user.name),
+            'is-invalid': shouldAppendErrorClass($v.user.name),
+          }"
           id="username"
           aria-describedby="emailHelp"
           v-model="user.name"
@@ -43,6 +51,10 @@
         <input
           type="password"
           class="form-control"
+          :class="{
+            'is-valid': shouldAppendValidClass($v.user.password),
+            'is-invalid': shouldAppendErrorClass($v.user.password),
+          }"
           id="password"
           v-model="user.password"
           @blur="$v.user.password.$touch()"
@@ -176,6 +188,12 @@ export default {
       } else {
         console.log("invalid input values");
       }
+    },
+    shouldAppendValidClass(field) {
+      return !field.$invalid && field.$model && field.$dirty;
+    },
+    shouldAppendErrorClass(field) {
+      return field.$error;
     },
   },
 };

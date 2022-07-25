@@ -1,6 +1,8 @@
 <template>
   <section>
-    <h1 class="fw-bold">Teams</h1>
+    <h1 class="fw-bold">
+      <span><i class="fa-solid fa-users"></i></span> Teams
+    </h1>
     <hr class="hrStyle" />
     <p class="text-secondary">View and edit teams you are part of</p>
     <template v-if="loading">
