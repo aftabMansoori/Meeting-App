@@ -8,7 +8,13 @@
             placeholder="Team name"
             class="form-control"
             v-model="team.name"
+            @blur="$v.team.name.$touch()"
           />
+          <!-- <div v-if="$v.team.name.$error" class="text-danger mt-1">
+            <div v-if="!$v.team.name.required" class="error-message">
+              <small>This email field is required</small>
+            </div>
+          </div> -->
         </div>
         <div class="mb-3">
           <input
@@ -16,7 +22,13 @@
             placeholder="Team short name"
             class="form-control"
             v-model="team.shortName"
+            @blur="$v.team.shortName.$touch()"
           />
+          <!-- <div v-if="$v.team.shortName.$error" class="text-danger mt-1">
+            <div v-if="!$v.team.shortName.required" class="error-message">
+              <small>This email field is required</small>
+            </div>
+          </div> -->
         </div>
         <div class="mb-3">
           <textarea
@@ -25,7 +37,13 @@
             placeholder="Provide a description for a team"
             rows="3"
             v-model="team.description"
+            @blur="$v.team.description.$touch()"
           ></textarea>
+          <!-- <div v-if="$v.team.description.$error" class="text-danger mt-1">
+            <div v-if="!$v.team.description.required" class="error-message">
+              <small>This email field is required</small>
+            </div>
+          </div> -->
         </div>
         <hr class="hrStyle" />
         <div>
@@ -36,7 +54,11 @@
           <div
             class="d-flex align-items-center justify-content-between form-group"
           >
-            <select class="form-select" v-model="member">
+            <select
+              class="form-select"
+              v-model="member"
+              @blur="$v.team.members.$touch()"
+            >
               <option value="">Select Member</option>
               <option
                 v-for="(member, i) in $store.state.manageUsers.registeredUsers"
@@ -64,6 +86,11 @@
           Add Team
           <template v-if="loading"> <app-spinner></app-spinner> </template>
         </button>
+        <!-- <div v-if="$v.team.members.$error" class="text-danger mt-1">
+          <div v-if="!$v.team.members.required" class="error-message">
+            <small>This email field is required</small>
+          </div>
+        </div> -->
       </form>
     </div>
   </article>
@@ -74,6 +101,7 @@ import Vue from "vue";
 import config from "@/config";
 import { addTeam } from "@/services/teams";
 import AppSpinner from "./utils/AppSpinner.vue";
+import { required } from "vuelidate/lib/validators";
 
 export default {
   components: { AppSpinner },
@@ -94,24 +122,43 @@ export default {
       loading: false,
     };
   },
+  validations() {
+    return {
+      team: {
+        name: { required },
+        shortName: { required },
+        description: { required },
+        members: { required },
+      },
+    };
+  },
   methods: {
     async addTeam() {
       try {
-        this.loading = true;
-        const response = await addTeam(this.team);
+        this.$v.team.$touch();
 
-        if (response.status === 200) {
-          Vue.$toast.success(`${this.team.name} added successfull!!`, {
-            duration: config.toastDuration,
-          });
+        if (!this.$v.team.$invalid) {
+          this.loading = true;
+          const response = await addTeam(this.team);
+
+          if (response.status === 200) {
+            Vue.$toast.success(`${this.team.name} added successfull!!`, {
+              duration: config.toastDuration,
+            });
+          } else {
+            Vue.$toast.error(response.message || "There was an error", {
+              duration: config.toastDuration,
+            });
+          }
+
+          this.getAllTeams();
+          this.loading = false;
         } else {
-          Vue.$toast.error(response.message || "There was an error", {
+          Vue.$toast.error("Invalid input values!!", {
             duration: config.toastDuration,
           });
+          this.loading = false;
         }
-
-        this.getAllTeams();
-        this.loading = false;
       } catch (err) {
         Vue.$toast.error("Invalid input values!!", {
           duration: config.toastDuration,

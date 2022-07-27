@@ -12,7 +12,13 @@
           placeholder="Title of the meeting"
           class="form-control"
           v-model="meeting.name"
+          @blur="$v.meeting.name.$touch()"
         />
+        <div v-if="$v.meeting.name.$error" class="text-danger mt-1">
+          <div v-if="!$v.meeting.name.required" class="error-message">
+            <small>This name field is required</small>
+          </div>
+        </div>
       </div>
       <div class="mb-3 form-group">
         <label for="date" class="form-label mb-1">Date</label>
@@ -22,7 +28,13 @@
           id="date"
           class="form-control"
           v-model="meeting.date"
+          @blur="$v.meeting.date.$touch()"
         />
+        <div v-if="$v.meeting.date.$error" class="text-danger mt-1">
+          <div v-if="!$v.meeting.date.required" class="error-message">
+            <small>This date field is required</small>
+          </div>
+        </div>
       </div>
       <div class="mb-3 form-group">
         <label for="startTime" class="form-label mb-1"
@@ -34,7 +46,13 @@
           id="startTime"
           class="form-control w-auto"
           v-model="startTime"
+          @blur="$v.meeting.startTime.$touch()"
         />
+        <div v-if="$v.meeting.startTime.$error" class="text-danger mt-1">
+          <div v-if="!$v.meeting.startTime.required" class="error-message">
+            <small>This field is required</small>
+          </div>
+        </div>
       </div>
       <div class="mb-3 form-group">
         <label for="endTime" class="form-label mb-1">End Time (hh:mm)</label>
@@ -44,7 +62,13 @@
           id="endTime"
           class="form-control w-auto"
           v-model="endTime"
+          @blur="$v.meeting.endTime.$touch()"
         />
+        <div v-if="$v.meeting.endTime.$error" class="text-danger mt-1">
+          <div v-if="!$v.meeting.endTime.required" class="error-message">
+            <small>This field is required</small>
+          </div>
+        </div>
       </div>
       <div class="mb-3 form-group">
         <label for="description" class="form-label mb-1">Description</label>
@@ -56,7 +80,13 @@
           placeholder="What is the agenda of the meeting?"
           class="form-control"
           v-model="meeting.description"
+          @blur="$v.meeting.description.$touch()"
         ></textarea>
+        <div v-if="$v.meeting.description.$error" class="text-danger mt-1">
+          <div v-if="!$v.meeting.description.required" class="error-message">
+            <small>This description field is required</small>
+          </div>
+        </div>
       </div>
       <div class="mb-3 form-group">
         <label for="attendees" class="form-label mb-1"
@@ -69,11 +99,17 @@
           placeholder="john@example.com, @annual-day, mark@example.com"
           class="form-control"
           v-model="attendees"
+          @blur="$v.meeting.attendees.$touch()"
         />
         <small class="text-white"
           >Separate emailids / team short names by commas - team short names
           always begin with @</small
         >
+        <div v-if="$v.meeting.attendees.$error" class="text-danger mt-1">
+          <div v-if="!$v.meeting.attendees.required" class="error-message">
+            <small>This attendees field is required</small>
+          </div>
+        </div>
       </div>
       <div class="my-2">
         <button class="btn btnBg text-white" type="submit" :disabled="loading">
@@ -91,6 +127,7 @@
 import { addMeeting } from "@/services/meetings";
 import Vue from "vue";
 import config from "@/config";
+import { required } from "vuelidate/lib/validators";
 
 export default {
   name: "AddMeeting",
@@ -116,29 +153,50 @@ export default {
       attendees: [],
     };
   },
+  validations() {
+    return {
+      meeting: {
+        name: { required },
+        description: { required },
+        date: { required },
+        startTime: { required },
+        endTime: { required },
+        attendees: { required },
+      },
+    };
+  },
   methods: {
     async addMeeting() {
-      const attendees = this.attendees.split(",");
-      this.meeting.attendees = attendees.map((attendee) => attendee.trim());
-      this.meeting.startTime = {
-        hours: this.startTime.split(":")[0],
-        minutes: this.startTime.split(":")[1],
-      };
-      this.meeting.endTime = {
-        hours: this.endTime.split(":")[0],
-        minutes: this.endTime.split(":")[1],
-      };
+      this.$v.meeting.$touch();
 
-      this.loading = true;
-      const data = await addMeeting(this.meeting);
+      if (!this.$v.meeting.$invalid) {
+        const attendees = this.attendees.split(",");
+        this.meeting.attendees = attendees.map((attendee) => attendee.trim());
+        this.meeting.startTime = {
+          hours: this.startTime.split(":")[0],
+          minutes: this.startTime.split(":")[1],
+        };
+        this.meeting.endTime = {
+          hours: this.endTime.split(":")[0],
+          minutes: this.endTime.split(":")[1],
+        };
 
-      if (!data) this.loading = false;
+        this.loading = true;
+        const data = await addMeeting(this.meeting);
 
-      Vue.$toast.success(`Meeting added successfully!!`, {
-        duration: config.toastDuration,
-      });
+        if (!data) this.loading = false;
 
-      this.loading = false;
+        Vue.$toast.success(`Meeting added successfully!!`, {
+          duration: config.toastDuration,
+        });
+
+        this.loading = false;
+      } else {
+        Vue.$toast.error("Invalid input values!!", {
+          duration: config.toastDuration,
+        });
+        this.loading = false;
+      }
     },
   },
 };

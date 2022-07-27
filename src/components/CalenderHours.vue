@@ -6,7 +6,10 @@
       </template>
       <template v-else>
         <article>
-          <div class="meetBox px-3" :style="`height: ${cal(meet)}% ; `">
+          <div
+            class="meetBox px-3"
+            :style="`height: ${cal(meet)}% ; marginTop: ${margin(meet)}rem`"
+          >
             <h6 class="fw-bold my-2">{{ meet.name }}</h6>
             <hr class="meet-hr" />
             <p><span class="fw-bold">Attendes:</span> {{ attendees(meet) }}</p>
@@ -31,15 +34,19 @@ export default {
           meet.endTime.minutes / 60 -
           meet.startTime.minutes / 60 +
           +1) *
-        100
+          100 +
+        (meet.startTime.minutes > 0 ? (meet.endTime.minutes / 60) * 100 : 0)
       );
+    },
+    margin(meet) {
+      const margin = (meet.startTime.minutes / 60) * 3;
+      return margin;
     },
     attendees(meet) {
       let attendeesStr = "";
       meet.attendees.forEach((attendee) => {
         attendeesStr += attendee.email + ", ";
       });
-
       return attendeesStr;
     },
   },
@@ -58,5 +65,6 @@ section li article {
   background-color: #e6e4e4;
   overflow: auto;
   position: relative;
+  opacity: 0.9;
 }
 </style>
