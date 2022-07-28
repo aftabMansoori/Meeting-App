@@ -130,7 +130,8 @@ export default {
           Vue.$toast.success(`Hii! ${response.name}, login successfull!!`, {
             duration: config.toastDuration,
           });
-          this.$router.push("/");
+          // this.$router.push("/");
+          window.location.href = "/";
         } else {
           Vue.$toast.error(response.message || "There was an error", {
             duration: config.toastDuration,

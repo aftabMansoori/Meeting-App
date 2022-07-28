@@ -66,23 +66,18 @@ export default {
       this.choosedDay = dateSelected[0];
     },
     async calenderMeetings() {
-      try {
-        this.loading = true;
-        this.meetings = Array(24).fill(null);
+      this.loading = true;
+      this.meetings = Array(24).fill(null);
 
-        const data = await getCalenderMeetings(this.date);
+      const data = await getCalenderMeetings(this.date);
 
-        this.selectedDate();
+      this.selectedDate();
 
-        data.forEach((meet) => {
-          this.meetings[meet.startTime.hours] = meet;
-        });
+      data.forEach((meet) => {
+        this.meetings[meet.startTime.hours] = meet;
+      });
 
-        this.loading = false;
-      } catch (err) {
-        console.log(err.message);
-        this.loading = false;
-      }
+      this.loading = false;
     },
   },
 };

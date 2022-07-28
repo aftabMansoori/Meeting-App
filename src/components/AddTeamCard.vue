@@ -134,32 +134,21 @@ export default {
   },
   methods: {
     async addTeam() {
-      try {
-        this.$v.team.$touch();
+      this.$v.team.$touch();
 
-        if (!this.$v.team.$invalid) {
-          this.loading = true;
-          const response = await addTeam(this.team);
+      if (!this.$v.team.$invalid) {
+        this.loading = true;
+        const data = await addTeam(this.team);
 
-          if (response.status === 200) {
-            Vue.$toast.success(`${this.team.name} added successfull!!`, {
-              duration: config.toastDuration,
-            });
-          } else {
-            Vue.$toast.error(response.message || "There was an error", {
-              duration: config.toastDuration,
-            });
-          }
+        if (!data) this.loading = false;
 
-          this.getAllTeams();
-          this.loading = false;
-        } else {
-          Vue.$toast.error("Invalid input values!!", {
-            duration: config.toastDuration,
-          });
-          this.loading = false;
-        }
-      } catch (err) {
+        Vue.$toast.success(`${this.team.name} added successfull!!`, {
+          duration: config.toastDuration,
+        });
+
+        this.loading = false;
+        this.getAllTeams();
+      } else {
         Vue.$toast.error("Invalid input values!!", {
           duration: config.toastDuration,
         });

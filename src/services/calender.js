@@ -1,13 +1,13 @@
 import axiosConfig from "./axiosConfig";
+import { errorHandler, successHandler } from "./helper";
 
 const getCalenderMeetings = async (date) => {
-  const response = await axiosConfig.get(`calendar?date=${date}`);
-
-  if (response.status !== 200) {
-    throw Error();
+  try {
+    const response = await axiosConfig.get(`calendar?date=${date}`);
+    return successHandler(response);
+  } catch (err) {
+    errorHandler(err);
   }
-
-  return response.data;
 };
 
 export { getCalenderMeetings };

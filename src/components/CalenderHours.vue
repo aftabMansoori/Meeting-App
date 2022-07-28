@@ -21,6 +21,8 @@
 </template>
 
 <script>
+import { attendeesStr } from "@/services/manageUsers";
+
 export default {
   name: "CalenderHours",
   props: {
@@ -43,11 +45,7 @@ export default {
       return margin;
     },
     attendees(meet) {
-      let attendeesStr = "";
-      meet.attendees.forEach((attendee) => {
-        attendeesStr += attendee.email + ", ";
-      });
-      return attendeesStr;
+      return attendeesStr(meet.attendees);
     },
   },
 };
