@@ -30,14 +30,14 @@ export default {
   },
   methods: {
     cal(meet) {
-      return (
+      return Math.abs(
         (meet.endTime.hours -
           meet.startTime.hours +
           meet.endTime.minutes / 60 -
           meet.startTime.minutes / 60 +
           +1) *
           100 +
-        (meet.startTime.minutes > 0 ? (meet.endTime.minutes / 60) * 100 : 0)
+          (meet.startTime.minutes > 0 ? (meet.endTime.minutes / 60) * 100 : 0)
       );
     },
     margin(meet) {

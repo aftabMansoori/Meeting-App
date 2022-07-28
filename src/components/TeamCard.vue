@@ -3,12 +3,23 @@
     <div class="h-100">
       <div class="team-detail d-flex flex-column justify-content-between">
         <div>
-          <h3>{{ team.name }}</h3>
-          <p>@{{ team.shortName }}</p>
+          <h3 class="fw-bold">{{ team.name }}</h3>
+          <p class="fw-bold">@{{ team.shortName }}</p>
         </div>
         <p class="my-1">
           {{ team.description }}
         </p>
+        <div>
+          <small class="text-muted" v-b-modal="team._id">view more</small>
+          <b-modal
+            :id="team._id"
+            :title="`${team.name} team description`"
+            ok-only
+            centered
+          >
+            <p>{{ team.description }}</p>
+          </b-modal>
+        </div>
         <div>
           <button
             class="my-1 btn btn-danger"
@@ -118,7 +129,7 @@ article > div {
 }
 
 .team-detail > p {
-  height: 100px;
+  height: 70px;
   text-overflow: ellipsis;
   white-space: wrap;
   overflow: hidden;

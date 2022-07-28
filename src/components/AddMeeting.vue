@@ -99,17 +99,16 @@
           placeholder="john@example.com, @annual-day, mark@example.com"
           class="form-control"
           v-model="attendees"
-          @blur="$v.meeting.attendees.$touch()"
         />
         <small class="text-white"
           >Separate emailids / team short names by commas - team short names
           always begin with @</small
         >
-        <div v-if="$v.meeting.attendees.$error" class="text-danger mt-1">
+        <!-- <div v-if="$v.meeting.attendees.$error" class="text-danger mt-1">
           <div v-if="!$v.meeting.attendees.required" class="error-message">
             <small>This attendees field is required</small>
           </div>
-        </div>
+        </div> -->
       </div>
       <div class="my-2">
         <button class="btn btnBg text-white" type="submit" :disabled="loading">
@@ -161,7 +160,7 @@ export default {
         date: { required },
         startTime: { required },
         endTime: { required },
-        attendees: { required },
+        // attendees: { required },
       },
     };
   },

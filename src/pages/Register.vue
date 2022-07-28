@@ -95,7 +95,13 @@
         </div>
       </div>
 
-      <button type="submit" class="btn btn-primary w-100">Register</button>
+      <button
+        type="submit"
+        class="btn btn-primary w-100"
+        :disabled="status === 'LOADING' ? true : false"
+      >
+        Register
+      </button>
     </form>
     <section class="mt-5">
       <i
