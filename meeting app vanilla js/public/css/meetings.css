@@ -1,0 +1,103 @@
+main section:nth-child(4) {
+  border-radius: 5px;
+}
+
+section hr {
+  border-color: #6f6f6f;
+  background-color: #6f6f6f;
+}
+
+form div input[type="date"],
+input[type="text"] {
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0.5em 0;
+  padding: 0.7em 1em;
+  border: none;
+  border-radius: 5px;
+}
+
+form div input[type="time"] {
+  margin: 0.5em 0;
+  padding: 0.7em 1em;
+  border: none;
+  border-radius: 5px;
+}
+
+select {
+  width: auto !important;
+  padding: 0.5em;
+  border: 1px solid #c4c2c2;
+  border-radius: 5px;
+}
+
+form div textarea {
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0.5em 0;
+  padding: 0.5em;
+  border: none;
+  border-radius: 5px;
+}
+
+form div button {
+  border: none;
+  background-color: #4493c2;
+  padding: 0.7em 1.4em;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 600;
+  color: #fff;
+}
+
+.meeting {
+  border: 1px solid #d7cfcf;
+  padding: 1em;
+  border-radius: 5px;
+  margin: 1em 0;
+}
+
+article > button {
+  background-color: #ff0000;
+  border: none;
+  padding: 0.4em 0.8em;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 600;
+  color: #fff;
+}
+
+.members-selected button {
+  border: none;
+  background-color: #4493c2;
+  padding: 0.5em 1em;
+  border-radius: 5px;
+  cursor: pointer;
+  color: #fff;
+}
+
+.date-and-time {
+  display: flex;
+  align-items: center;
+}
+
+select {
+  width: 100%;
+}
+
+/* .active-tab {
+  border: 1px solid #c5c0c0;
+  border-bottom: none;
+  padding: 0.5em 2em;
+  border-radius: 5px;
+}
+
+.inactive-tab {
+  border-bottom: 1px solid #c5c0c0;
+  padding: 0.5em 2em;
+  border-radius: 5px;
+}
+
+.empty-space {
+  border: 1px solid #c5c0c0;
+} */

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Meetings | Meeting App</title>
+    <script src="./js/services/check-auth.js" type="module"></script>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/meetings.css" />
+    <link rel="stylesheet" href="css/nav.css" />
+    <link rel="stylesheet" href="css/index.css" />
+    <link rel="stylesheet" href="css/normalize.css" />
+    <link rel="stylesheet" href="/external/css/all.min.css" />
+  </head>
+  <body>
+    <nav class="d-sm-none">
+      <ul>
+        <li><a href="/">Calender</a></li>
+        <li class="active"><a href="search-meetings.html">Meetings</a></li>
+        <li><a href="teams.html">Teams</a></li>
+      </ul>
+      <ul>
+        <li>Hello! <span class="username" id="user-name">Username</span></li>
+        <li><button id="logout">Logout</button></li>
+      </ul>
+    </nav>
+
+    <nav class="d-lg-none">
+      <div>
+        <div>MyMeetings</div>
+        <div class="menu-btn">
+          <button id="menu-btn">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+        </div>
+      </div>
+      <ul class="d-none" id="mobileMenu">
+        <li><a href="/">Calender</a></li>
+        <li class="active"><a href="search-meetings.html">Meetings</a></li>
+        <li><a href="teams.html">Teams</a></li>
+        <li><button id="logout">Logout</button></li>
+      </ul>
+    </nav>
+
+    <main>
+      <h1>Meetings</h1>
+      <hr class="hrStyle" />
+      <section class="my-2">
+        <span class="active-tab mx-1"
+          ><a href="search-meetings.html">Filter/Search Meetings</a></span
+        >
+        <span class="inactive-tab mx-1"
+          ><a href="add-meetings.html">Add a Meeting</a></span
+        >
+
+        <!-- <div class="empty-space"></div> -->
+      </section>
+      <section class="bg py-1 px-1">
+        <div class="flex-space-between">
+          <h2 class="text-white">Add a new meeting</h2>
+          <div id="message"></div>
+        </div>
+        <hr class="hrStyle" />
+        <form id="add-meeting">
+          <div class="my-1">
+            <label for="name">Name of the Meeting</label><br />
+            <input
+              type="text"
+              name="name"
+              id="name"
+              placeholder="Title of the meeting"
+            />
+          </div>
+          <div class="my-1">
+            <label for="date">Date</label><br />
+            <input type="date" name="date" id="date" />
+          </div>
+          <div class="my-1">
+            <label for="startTime">Start Time (hh:mm)</label><br />
+            <input type="time" name="startTime" id="startTime" />
+          </div>
+          <div class="my-1">
+            <label for="endTime">End Time (hh:mm)</label><br />
+            <input type="time" name="endTime" id="endTime" />
+          </div>
+          <div class="my-1">
+            <label for="description">Description</label><br />
+            <textarea
+              name="description"
+              id="description"
+              cols="30"
+              rows="5"
+              placeholder="What is the agenda of the meeting?"
+            ></textarea>
+          </div>
+          <div class="my-1">
+            <label for="attendees">EmailIDs of attendees, or team's short</label
+            ><br />
+            <input
+              type="text"
+              name="attendees"
+              id="attendees"
+              placeholder="john@example.com, @annual-day, mark@example.com"
+            /><br />
+            <small class="text-white"
+              >Separate emailids / team short names by commas - team short names
+              always begin with @</small
+            >
+          </div>
+          <div class="my-2">
+            <button type="submit">Add meeting</button>
+          </div>
+        </form>
+      </section>
+    </main>
+
+    <script src="./js/navbar.js"></script>
+    <script src="./js/pages/addMeetings.js" type="module"></script>
+  </body>
+</html>

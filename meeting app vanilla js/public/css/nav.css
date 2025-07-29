@@ -1,0 +1,66 @@
+nav {
+  display: flex;
+  justify-content: space-between;
+  background-color: #ebebeb;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  padding: 0 8em;
+  margin: 0;
+}
+
+ul li {
+  margin: 0 10px;
+  padding: 1em;
+}
+
+ul li a {
+  color: rgb(168, 168, 168);
+}
+
+.active {
+  background-color: #d2d2d2;
+}
+
+.active a {
+  color: #000;
+  font-weight: 600;
+}
+
+.username {
+  color: #74bce6;
+}
+
+.d-none {
+  display: none;
+}
+
+ul > li > button {
+  border: none;
+}
+
+@media (max-width: 768px) {
+  nav {
+    display: block;
+    width: 100%;
+  }
+
+  nav > div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1em 1.5em;
+  }
+
+  nav ul {
+    display: block;
+    padding: 0 1em;
+    text-align: center;
+  }
+
+  .menu-btn i {
+    font-size: 1.5em;
+  }
+}

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Meetings | Meeting App</title>
+    <script src="./js/services/check-auth.js" type="module"></script>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/meetings.css" />
+    <link rel="stylesheet" href="css/nav.css" />
+    <link rel="stylesheet" href="css/index.css" />
+    <link rel="stylesheet" href="css/normalize.css" />
+    <link rel="stylesheet" href="/external/css/all.min.css" />
+  </head>
+  <body>
+    <nav class="d-sm-none">
+      <ul>
+        <li><a href="/">Calender</a></li>
+        <li class="active"><a href="search-meetings.html">Meetings</a></li>
+        <li><a href="teams.html">Teams</a></li>
+      </ul>
+      <ul>
+        <li>Hello! <span class="username" id="user-name">Username</span></li>
+        <li><button id="logout">Logout</button></li>
+      </ul>
+    </nav>
+
+    <nav class="d-lg-none">
+      <div>
+        <div>MyMeetings</div>
+        <div class="menu-btn">
+          <button id="menu-btn">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+        </div>
+      </div>
+      <ul class="d-none" id="mobileMenu">
+        <li><a href="/">Calender</a></li>
+        <li class="active"><a href="search-meetings.html">Meetings</a></li>
+        <li><a href="teams.html">Teams</a></li>
+        <li><button id="logout">Logout</button></li>
+      </ul>
+    </nav>
+
+    <main>
+      <h1>Meetings</h1>
+      <hr class="hrStyle" />
+      <section class="my-2">
+        <span class="active-tab mx-1"
+          ><a href="search-meetings.html">Filter/Search Meetings</a></span
+        >
+        <span class="inactive-tab mx-1"
+          ><a href="add-meetings.html">Add a Meeting</a></span
+        >
+
+        <!-- <div class="empty-space"></div> -->
+      </section>
+      <section class="bg py-1 px-1">
+        <h2 class="text-white">Search for meetings</h2>
+        <hr class="hrStyle" />
+        <form id="search-meeting">
+          <div class="my-1">
+            <label for="date">Date</label><br />
+            <select class="my" name="date" id="date">
+              <option value="all" selected>All</option>
+              <option value="past">PAST</option>
+              <option value="present">TODAY</option>
+              <option value="future">UPCOMING</option>
+            </select>
+          </div>
+          <div class="my-1">
+            <label for="search">Search For</label><br />
+            <textarea
+              name="search"
+              id="search"
+              cols="30"
+              rows="3"
+              placeholder="Search using words which describe the meeting"
+            ></textarea>
+          </div>
+          <div class="my-2">
+            <button type="submit">Search</button>
+          </div>
+        </form>
+      </section>
+
+      <h2 class="my-1">Meetings matching search criteria</h2>
+      <hr class="hrStyle" />
+      <section class="my-2" id="meeting-results">
+        <article class="loader-container">
+          <span class="loader"></span>
+        </article>
+      </section>
+
+      <div id="msg"></div>
+    </main>
+
+    <script src="./js/navbar.js"></script>
+    <script src="./js/pages/searchMeetings.js" type="module"></script>
+  </body>
+</html>

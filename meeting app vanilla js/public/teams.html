@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Teams | Meeting App</title>
+    <script src="./js/services/check-auth.js" type="module"></script>
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/nav.css" />
+    <link rel="stylesheet" href="css/teams.css" />
+    <link rel="stylesheet" href="css/index.css" />
+    <link rel="stylesheet" href="css/normalize.css" />
+    <link rel="stylesheet" href="/external/css/all.min.css" />
+  </head>
+  <body>
+    <nav class="d-sm-none">
+      <ul>
+        <li><a href="/">Calender</a></li>
+        <li><a href="search-meetings.html">Meetings</a></li>
+        <li class="active"><a href="teams.html">Teams</a></li>
+      </ul>
+      <ul>
+        <li>Hello! <span class="username" id="user-name">Username</span></li>
+        <li><button id="logout">Logout</button></li>
+      </ul>
+    </nav>
+
+    <nav class="d-lg-none">
+      <div>
+        <div>MyMeetings</div>
+        <div class="menu-btn">
+          <button id="menu-btn">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+        </div>
+      </div>
+      <ul class="d-none" id="mobileMenu">
+        <li><a href="/">Calender</a></li>
+        <li><a href="search-meetings.html">Meetings</a></li>
+        <li class="active"><a href="teams.html">Teams</a></li>
+        <li><button id="logout">Logout</button></li>
+      </ul>
+    </nav>
+
+    <main>
+      <h1>Teams</h1>
+      <hr class="hrStyle" />
+      <p>View and edit teams you are part of</p>
+      <section class="row" id="teams">
+        <div class="col loader-container">
+          <span class="loader"></span>
+        </div>
+        <div class="col loader-container">
+          <span class="loader"></span>
+        </div>
+        <div class="col loader-container">
+          <span class="loader"></span>
+        </div>
+      </section>
+      <div id="msg"></div>
+    </main>
+
+    <script src="./js/navbar.js"></script>
+    <script src="./js/pages/teams.js" type="module"></script>
+  </body>
+</html>

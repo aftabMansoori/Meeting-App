@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registration</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="css/authentication.css" />
+    <link rel="stylesheet" href="css/normalize.css" />
+    <link rel="stylesheet" href="css/index.css" />
+  </head>
+  <body>
+    <main>
+      <div id="msg"></div>
+      <h1>Register</h1>
+      <small>Fill the required fields to create an account</small>
+      <section class="my-2">
+        <form id="registerUser">
+          <div>
+            <label for="username">Username</label><br />
+            <input type="text" name="username" id="username" />
+          </div>
+          <div>
+            <label for="email">Email</label><br />
+            <input type="email" name="email" id="email" />
+          </div>
+          <div>
+            <label for="password">Password</label><br />
+            <input type="password" name="password" id="password" />
+          </div>
+          <div>
+            <label for="confPassword">Confirm Password</label><br />
+            <input type="password" name="confPassword" id="confPassword" />
+          </div>
+          <div>
+            <button type="submit">Register</button>
+          </div>
+        </form>
+      </section>
+      <section>
+        <i>Already have an account? <a href="login.html">Login</a></i>
+      </section>
+    </main>
+
+    <script src="js/pages/register.js" type="module"></script>
+  </body>
+</html>
